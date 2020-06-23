@@ -26,7 +26,9 @@
                         <td><?= $i++ ?></td>
                         <td><?= $kat['nama_kategori']?></td>
                         <td>
-                            <a href="" class="btn btn-info btn-sm">edit</a>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEdit<?=$kat['id_kategori']?>">
+                          edit
+                        </button>
                             <a href="<?=base_url('admin/deleteKategori')?>/<?= $kat['id_kategori']?>" class="btn btn-danger btn-sm tombol-hapus">hapus</a>
                         </td>
                     </tr>
@@ -67,3 +69,35 @@
     </div>
   </div>
 </div>
+
+<?php foreach($kategori as $editkat):?>
+<div class="modal fade" id="modalEdit<?=$editkat['id_kategori']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Kategori</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="<?= base_url('admin/editKategori')?>" method="post">
+            <div class="form-group">
+                <label for="">Nama Kategori</label>
+                <input type="hidden" name="id" class="form-control" value="<?=$editkat['id_kategori']?>">
+                <input type="text" name="nama" class="form-control" value="<?=$editkat['nama_kategori']?>">
+            </div>
+            <div class="form-group">
+                <label for="">Deskripsi Kategori</label>
+                <textarea name="deskripsi" id="" cols="30" rows="5" class="form-control"><?=$editkat['deskripsi']?></textarea>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Simpan Data</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php endforeach ?>

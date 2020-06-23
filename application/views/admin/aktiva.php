@@ -12,22 +12,27 @@
                         <th>No</th>
                         <th>Nama Aset</th>
                         <th>Diperoleh tgl</th>
-                        <th>Harga perolehan</th>
+                        <th>Harga <small>( Rp. )</small></th>
+                        <th>Metode Penyusutan</th>
+                        <th>Hasil <small>( Rp. )</small></th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php $i=1;foreach($aktiva as $akt):?>
                     <tr>
-                        <td>1</td>
-                        <td>avanza</td>
-                        <td>09/09/2009</td>
-                        <td>30.000.000</td>
+                        <td><?=$i++?></td>
+                        <td><?=$akt['nama_aset']?></td>
+                        <td><?=$akt['tanggal']?></td>
+                        <td><?=$akt['harga_perolehan']?></td>
+                        <td><?php if($akt['metode_penyusutan']=="lurus"){echo 'garis lurus';}else{echo 'saldo menurun ganda';};?></td>
+                        <td><?=$akt['nilai_setelah_penyusutan']?></td>
                         <td>
-                            <a href="" class="btn btn-info btn-sm">edit</a>  
-                            <a href="" class="btn btn-danger btn-sm">hapus</a>  
+                            <a href="<?=base_url('admin/editAktiva')?>/<?=$akt['id_aset']?>" class="btn btn-info btn-sm">edit</a>  
+                            <a href="<?=base_url('admin/deleteAktiva')?>/<?=$akt['id_aset']?>" class="btn btn-danger btn-sm tombol-hapus">hapus</a>  
                         </td>
                     </tr>
-                    
+                <?php endforeach?>
                 </tbody>
             </table>
         </div>

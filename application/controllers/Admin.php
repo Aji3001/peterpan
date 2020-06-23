@@ -14,15 +14,19 @@ class Admin extends CI_Controller{
     
     public function index()
     {
+        $data['countAktiva']=$this->admin_model->getCountAktiva();
+        $data['countKategori']=$this->admin_model->getCountKategori();
+        $data['countUser']=$this->admin_model->getCountUser();
         $this->load->view('part/header');
-        $this->load->view('admin/index');
+        $this->load->view('admin/index',$data);
         $this->load->view('part/footer');
     }
 
     public function aktiva()
     {
+        $data['aktiva']=$this->admin_model->getAktiva();
         $this->load->view('part/header');
-        $this->load->view('admin/aktiva');
+        $this->load->view('admin/aktiva',$data);
         $this->load->view('part/footer');
     }
 
@@ -32,6 +36,36 @@ class Admin extends CI_Controller{
         $this->load->view('part/header');
         $this->load->view('admin/addAktiva',$data);
         $this->load->view('part/footer');
+    }
+
+    public function tbhAktiva()
+    {
+        $this->admin_model->tbhAktiva();
+        $this->session->set_flashdata('success', 'Kategori berhasil ditambahkan');
+        redirect('admin/aktiva');
+    }
+
+    public function deleteAktiva($id)
+    {
+        $this->admin_model->deleteAktiva($id);
+        $this->session->set_flashdata('error', 'Kategori berhasil dihapus');
+        redirect('admin/aktiva');
+    }
+
+    public function editAktiva($id)
+    {
+        $data['aktiva']=$this->admin_model->editAktiva($id);
+        $data['kategori']=$this->admin_model->getKategori();
+        $this->load->view('part/header');
+        $this->load->view('admin/editAktiva',$data);
+        $this->load->view('part/footer');
+    }
+
+    public function do_editAktiva()
+    {
+        $this->admin_model->do_editAktiva();
+        $this->session->set_flashdata('success', 'Aktiva berhasil diubah');
+        redirect('admin/aktiva');
     }
 
     public function hitung()
@@ -53,6 +87,13 @@ class Admin extends CI_Controller{
     {
         $this->admin_model->addKategori();
         $this->session->set_flashdata('success', 'Kategori berhasil ditambahkan');
+        redirect('admin/kategori');
+    }
+
+    public function editKategori()
+    {
+        $this->admin_model->editKategori();
+        $this->session->set_flashdata('success', 'Kategori berhasil diubah');
         redirect('admin/kategori');
     }
 
@@ -84,6 +125,14 @@ class Admin extends CI_Controller{
         $this->session->set_flashdata('error', 'User berhasil dihapus');
         redirect('admin/user');
     }
+
+    public function editUser()
+    {
+        $this->admin_model->editUser();
+        $this->session->set_flashdata('success', 'User berhasil diubah');
+        redirect('admin/user');
+    }
+
 
 
 }

@@ -58,10 +58,14 @@
 			var residu = $('#residu').val();
 			if(metode=='lurus'){
 				$('#hasil').html('Rp. '+ (harga_perolehan-residu)/(umur/12));
+				$('#penyusutan').val((harga_perolehan-residu)/(umur/12));
 			}else{
 				$('#hasil').html('Rp. '+ (2*((100/100)/umur))*harga_perolehan);
+				$('#penyusutan').val((2*((100/100)/umur))*harga_perolehan);
 			}
 		});
+
+	
 	</script>
         
     </body>

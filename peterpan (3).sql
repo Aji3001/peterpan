@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2020 at 05:54 PM
+-- Generation Time: Jun 28, 2020 at 07:35 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -38,15 +38,17 @@ CREATE TABLE `aktiva_tetap` (
   `umur_ekonomis` int(11) NOT NULL,
   `tanggal` date DEFAULT NULL,
   `nilai_setelah_penyusutan` int(11) NOT NULL,
-  `keterangan` text COLLATE latin1_bin
+  `keterangan` text COLLATE latin1_bin,
+  `tgl_dibuat` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 --
 -- Dumping data for table `aktiva_tetap`
 --
 
-INSERT INTO `aktiva_tetap` (`id_aset`, `id_kategori`, `nama_aset`, `harga_perolehan`, `metode_penyusutan`, `residu`, `umur_ekonomis`, `tanggal`, `nilai_setelah_penyusutan`, `keterangan`) VALUES
-(15, 10, 'tanah', 45000000, 'ganda', 3000000, 45, '2010-07-13', 2000000, '<p>selatan jawa</p>\r\n');
+INSERT INTO `aktiva_tetap` (`id_aset`, `id_kategori`, `nama_aset`, `harga_perolehan`, `metode_penyusutan`, `residu`, `umur_ekonomis`, `tanggal`, `nilai_setelah_penyusutan`, `keterangan`, `tgl_dibuat`) VALUES
+(18, 11, 'test', 100000000, 'lurus', 2000000, 2, '2020-01-10', 49000000, '<p>jalan pakem kaliurang</p>\r\n', '2020-06-28'),
+(19, 11, 'test', 100000000, 'lurus', 0, 2, '2020-10-10', 50000000, '', '2020-06-28');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,8 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `deskripsi`) VALUES
-(10, 'kategori 1 uhuy', 'mantab gan');
+(11, 'gedung', ''),
+(12, 'kendaraan', '');
 
 -- --------------------------------------------------------
 
@@ -119,13 +122,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `aktiva_tetap`
 --
 ALTER TABLE `aktiva_tetap`
-  MODIFY `id_aset` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_aset` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`

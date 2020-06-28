@@ -47,7 +47,7 @@
                 </select>
             </div>
             <div class="form-group mt-3">
-                <label for="">Umur Ekonomis | <small>( jumlah bulan )</small></label>
+                <label for="">Umur Ekonomis | <small>( jumlah tahun )</small></label>
                 <input type="number" id="umur" class="form-control" name="umur">
             </div>
             <div class="form-group" id="faktor" style="display:none">

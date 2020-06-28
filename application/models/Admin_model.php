@@ -83,7 +83,8 @@ class Admin_model extends CI_Model{
             'umur_ekonomis'  => $_POST['umur'],
             'tanggal'  => $_POST['tanggal'],
             'nilai_setelah_penyusutan'  => $_POST['penyusutan'],
-            'keterangan'  => $_POST['keterangan']
+            'keterangan'  => $_POST['keterangan'],
+            'tgl_dibuat'  => date('Y-m-d')
         ];
         
         $this->db->insert('aktiva_tetap',$data);
@@ -91,7 +92,12 @@ class Admin_model extends CI_Model{
 
     public function getAktiva()
     {
-        return $this->db->get('aktiva_tetap')->result_array();
+        // return $this->db->get('aktiva_tetap')->result_array();
+        $this->db->select('aktiva.*,kat.nama_kategori');
+        $this->db->from('aktiva_tetap aktiva');
+        $this->db->join('kategori kat', 'aktiva.id_kategori = kat.id_kategori');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function deleteAktiva($id)
